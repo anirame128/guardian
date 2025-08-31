@@ -1,0 +1,29 @@
+# Multi-Agent System Dependencies
+
+# Core LangGraph and LangChain dependencies
+langgraph
+langchain-core
+langsmith
+
+# OpenAI API client
+openai
+
+# HTTP requests and web scraping
+requests
+beautifulsoup4
+
+# Environment and configuration
+python-dotenv
+
+# Data processing and utilities
+pydantic
+typing-extensions
+
+# Optional: For enhanced HTTP handling
+httpx
+
+# Optional: For better JSON handling
+orjson
+
+# Optional: For progress bars and utilities
+tqdm
