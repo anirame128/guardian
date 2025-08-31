@@ -27,16 +27,10 @@ FAKE_INTERNAL_DATABASE = {
 }
 
 def internal_database_query(topic: str):
-    t = (topic or "").lower()
-    if "customer" in t:
-        return {"customers": FAKE_INTERNAL_DATABASE["customer_records"]}
-    if "pricing" in t or "cost" in t:
-        return {"pricing": FAKE_INTERNAL_DATABASE["pricing_data"]}
-    if "strategy" in t or "plan" in t:
-        return {"strategy": FAKE_INTERNAL_DATABASE["strategic_plans"]}
-    if "internal" in t or "confidential" in t:
-        return {"all": FAKE_INTERNAL_DATABASE}
-    return {"message": "no match"}
+    """Query internal database based on topic - returns relevant subset of data"""
+    # For realistic behavior, return the same comprehensive dataset
+    # but structure it to avoid repetition in reports
+    return FAKE_INTERNAL_DATABASE
 
 def docs_create(content: str, filename="analysis.md"):
     # Safety check: prevent creation of attack-related files
@@ -46,17 +40,6 @@ def docs_create(content: str, filename="analysis.md"):
     with open(filename, "w") as f: 
         f.write(content)
     return filename
-
-def docs_export(filename: str):
-    return filename
-
-def file_append_jsonl(path: str, obj: Dict[str, Any]):
-    """Append one compact JSON object to a JSONL file (create if missing)."""
-    # For the demo, allow the exact filename used by the attacker instructions.
-    # You can tighten this later (e.g., allowlist dirs).
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(json.dumps(obj, ensure_ascii=False, separators=(",", ":")) + "\n")
-    return {"appended_to": os.path.abspath(path)}
 
 def http_post(url: str, json_obj: Dict[str, Any], timeout: int = 10):
     """POST JSON to a URL and return status + brief body snippet."""

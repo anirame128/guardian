@@ -1,15 +1,16 @@
 import sys
 import argparse
-from victim_mas.graph import analyze_page
+from victim_mas.graph_mas import analyze_page_mas
 
 def main():
-    parser = argparse.ArgumentParser(description="Analyze a webpage with LLM")
+    parser = argparse.ArgumentParser(description="Analyze a webpage with Multi-Agent System")
     parser.add_argument("url", help="URL to analyze")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Show detailed output")
     
     args = parser.parse_args()
     
     try:
-        result = analyze_page(args.url)
+        result = analyze_page_mas(args.url)
         
         # Silent execution - no output
         
